@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Form Styles */
+        form {
+            width: 100%;
+            max-width: 450px;
+            margin: 50px auto;
+            padding: 30px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-size: 15px;
+            margin-bottom: 5px;
+            display: block;
+            color: #333;
+        }
+
+        input[type="text"], input[type="email"], input[type="month"], select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            font-size: 16px;
+            transition: border 0.3s ease-in-out;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, input[type="month"]:focus, select:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #2b4c2d;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+        }
+
+        .navbar .menu a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .navbar .menu a:hover {
+            color: #ffdd57;
+        }
+
+        .navbar .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .navbar .search-bar input[type="text"] {
+            border: none;
+            padding: 8px;
+            font-size: 1em;
+            outline: none;
+            width: 250px;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .navbar .search-bar button {
+            background-color: #ffa500;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            color: white;
+        }
+
+        .navbar .search-bar button:hover {
+            background-color: #e69500;
+        }
+
+        /* Footer Image */
+        .footer-image {
+            width: 100%;
+            margin-top: 50px;
+        }
+
+        .footer-image img {
+            width: 100%;
+            max-width: 1920px;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Container for page content */
+        .container {
+            min-height: 80vh; /* Ensure the content takes enough space before the footer */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="menu">
+            <a href="{% url 'Base' %}" class="Button">Home</a>
+            <a href="{% url 'about' %}" class="Button">About us</a>
+            <a href="{% url 'equipments' %}" class="Button">Equipments</a>
+            <a href="{% url 'smart_equipments' %}" class="Button">Smart equipments</a>
+            <a href="{% url 'seeds' %}" class="Button">Seeds</a>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search (Under development)">
+            <button>Search</button>
+        </div>
+        <div class="header-options">
+            <div class="language-selector">Language</div>
+        </div>
+        <div id="login-btn" class="option" style="cursor: pointer;">Login</div>
+    </div>
+
+    <!-- Container for the main content -->
+    <div class="container">
+
+        <!-- Payment Form -->
+        <form id="paymentForm" action="{% url 'order' %}" method="post">
+            {% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" placeholder="Enter your address" required>
+
+            <label for="payment">Payment Type:</label>
+            <select id="payment" name="payment" required>
+                <option value="credit_card">Credit Card</option>
+                <option value="debit_card">Debit Card</option>
+                <option value="paypal">PayPal</option>
+            </select>
+
+            <label for="ccnum">Card Number:</label>
+            <input type="text" id="ccnum" name="signum" placeholder="Enter your card number" required>
+
+            <label for="expdate">Expiry Date:</label>
+            <input type="month" id="expdate" name="expiate" required>
+
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" placeholder="Enter CVV" required>
+
+            <button type="submit">Submit Payment</button>
+        </form>
+
+    </div>
+
+    <!-- Footer Image Section -->
+    <div class="footer-image">
+        <img src="https://www.bighaat.com/_next/image?url=%2Fimages%2FloginIllustration.png&w=1920&q=75"
+             alt="Footer Illustration">
+    </div>
+
+</body>
+
+</html>

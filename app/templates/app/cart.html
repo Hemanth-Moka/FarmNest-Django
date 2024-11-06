@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .cart-items {
+            margin-bottom: 20px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .cart-item-details {
+            flex: 1;
+            margin-left: 20px;
+        }
+        .cart-item-name {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .cart-item-price {
+            font-size: 16px;
+            color: #777;
+        }
+        .cart-summary {
+            text-align: right;
+            margin-top: 20px;
+        }
+        .cart-summary span {
+            font-size: 18px;
+        }
+        .checkout-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Shopping Cart</h1>
+
+        <!-- Cart Items Section -->
+        <div class="cart-items">
+            {% if cart_items %}
+                {% for item in cart_items %}
+                    <div class="cart-item">
+                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">{{ item.product.name }}</div>
+                            <div class="cart-item-price">{{ item.product.price }} ₹</div>
+                        </div>
+                        <div class="cart-item-quantity">
+                            Quantity: {{ item.quantity }}
+                        </div>
+                        <div class="cart-item-total-price">
+                            Total: {{ item.get_total_price }} ₹
+                        </div>
+                        <div class="cart-item-actions">
+                            <form action="{% url 'cart_remove' item.product.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit">Remove</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Your cart is empty.</p>
+            {% endif %}
+        </div>
+
+        <!-- Cart Summary Section -->
+        {% if cart_items %}
+            <div class="cart-summary">
+                <span>Total: {{ total_price }} ₹</span>
+                <a href="{% url 'checkout' %}" class="checkout-button">Proceed to Checkout</a>
+            </div>
+        {% endif %}
+
+     <!-- Footer Image Section -->
+        <div class="footer-image">
+        <img src="https://www.bighaat.com/_next/image?url=%2Fimages%2FloginIllustration.png&w=1920&q=75"
+             alt="Footer Illustration"
+             style="width: 100%; max-width: 1920px; height: auto; object-fit: contain;" />
+    </div>
+    </div>
+</body>
+</html>

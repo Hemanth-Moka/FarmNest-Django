@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce for Farmers</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background-color: #2b4c2d;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            color: #fff;
+            width: 100%;
+        }
+
+        .navbar .menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .menu a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .navbar .menu a:hover {
+            color: #ffdd57;
+        }
+
+        .navbar .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .navbar .search-bar input[type="text"] {
+            border: none;
+            padding: 8px;
+            font-size: 1em;
+            outline: none;
+            width: 250px;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .navbar .search-bar button {
+            background-color: #ffa500;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            color: white;
+        }
+
+        .navbar .search-bar button:hover {
+            background-color: #e69500;
+        }
+
+        .navbar .header-options {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .header-options .option {
+            color: white;
+            margin: 0 10px;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .navbar .header-options .option:hover {
+            color: #ffdd57;
+        }
+
+        .navbar .language-selector {
+            background-color: #fff;
+            color: #333;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Team Section */
+        .team-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px; /* Spacing between team members */
+            margin: 20px auto;
+            max-width: 1200px; /* Limit the width for better layout */
+            flex-wrap: wrap; /* Makes it responsive */
+        }
+
+        .team-member {
+            margin: 0 15px;
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .team-member h4 {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .team-member p {
+            font-size: 14px;
+            color: #666;
+            max-width: 150px;
+            margin: 0 auto;
+        }
+
+        /* Footer Image Section */
+        .footer-image {
+            margin-top: auto;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .footer-image img {
+            width: 100%;
+            max-width: 1920px;
+            height: auto;
+            object-fit: cover; /* Maintain aspect ratio */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar .search-bar input[type="text"] {
+                width: 150px;
+            }
+
+            .team-section {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .navbar .menu a {
+                margin: 0 8px;
+            }
+
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px 10px;
+            }
+
+            .navbar .menu, .navbar .search-bar, .navbar .header-options {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="menu">
+            <a href="{% url 'Base' %}" class="Button">Home</a>
+            <a href="{% url 'about' %}" class="Button">About Us</a>
+            <a href="{% url 'equipments' %}" class="Button">Equipments</a>
+            <a href="{% url 'smart_equipments' %}" class="Button">Smart Equipments</a>
+            <a href="{% url 'seeds' %}" class="Button">Seeds</a>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search (Under development)">
+            <button>Search</button>
+        </div>
+        <div class="header-options">
+            <div class="language-selector">Language</div>
+            <div id="profile" class="option">Profile</div>
+            <div id="login-btn" class="option">Login</div>
+        </div>
+    </div>
+
+    <!-- Team Section -->
+    <div class="team-section">
+        <div class="team-member">
+            <img src="https://via.placeholder.com/100" alt="Team Member 1">
+            <h4>Hemanth (Team Lead)</h4>
+            <p>UI and Implementation</p>
+        </div>
+        <div class="team-member">
+            <img src="https://via.placeholder.com/100" alt="Team Member 2">
+            <h4>Thulasi</h4>
+            <p>Data Management</p>
+        </div>
+        <div class="team-member">
+            <img src="https://via.placeholder.com/100" alt="Team Member 3">
+            <h4>Abhiyanth</h4>
+            <p>Products Section</p>
+        </div>
+    </div>
+
+    <!-- Footer Image Section -->
+    <div class="footer-image">
+        <img src="https://www.bighaat.com/_next/image?url=%2Fimages%2FloginIllustration.png&w=1920&q=75" alt="Footer Illustration" />
+    </div>
+
+</body>
+</html>

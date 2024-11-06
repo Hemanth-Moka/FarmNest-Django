@@ -1,0 +1,206 @@
+`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Ensures padding and borders are included in element width/height */
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #4CAF50;
+            font-size: 24px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+            margin: 20px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-size: 16px;
+            margin: 10px 0;
+            display: inline-block;
+        }
+
+        a:hover {
+            color: #45a049;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background-color: #2b4c2d;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            color: #fff;
+            width: 100%;
+        }
+
+        .navbar .menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .menu a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .navbar .menu a:hover {
+            color: #ffdd57;
+        }
+
+        .navbar .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .navbar .search-bar input[type="text"] {
+            border: none;
+            padding: 8px;
+            font-size: 1em;
+            outline: none;
+            width: 250px;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .navbar .search-bar button {
+            background-color: #ffa500;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            color: white;
+        }
+
+        .navbar .search-bar button:hover {
+            background-color: #e69500;
+        }
+
+        .navbar .header-options {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .header-options .option {
+            color: white;
+            margin: 0 10px;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .navbar .header-options .option:hover {
+            color: #ffdd57;
+        }
+
+        /* Footer Image Section */
+        .footer-image {
+            margin-top: auto;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .footer-image img {
+            width: 100%;
+            max-width: 1920px;
+            height: auto;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="menu">
+            <a href="{% url 'Base' %}" class="Button">Home</a>
+            <a href="{% url 'about' %}" class="Button">About us</a>
+            <a href="{% url 'equipments' %}" class="Button">Equipments</a>
+            <a href="{% url 'smart_equipments' %}" class="Button">Smart Equipments</a>
+            <a href="{% url 'seeds' %}" class="Button">Seeds</a>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search (Under development)" disabled>
+            <button disabled>Search</button>
+        </div>
+        <div class="header-options">
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}" class="option">Profile</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="option">Login</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Order Success Container -->
+    <div class="container">
+        <h1>Order Placed Successfully!</h1>
+        <p>Thank you for your order. Your payment has been processed successfully.</p>
+
+        <a href="{% url 'Base' %}" class="button">Go to Homepage</a> <br>
+        <a href="{% url 'order' %}">View Your Orders</a> <br>
+        <a href="{% url 'products' %}">Continue Shopping</a>
+    </div>
+
+    <!-- Footer Image Section -->
+    <div class="footer-image">
+        <img src="https://www.bighaat.com/_next/image?url=%2Fimages%2FloginIllustration.png&w=1920&q=75"
+             alt="Footer Illustration" />
+    </div>
+</body>
+</html>
+`

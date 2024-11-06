@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce for Farmers</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        /* NAVBAR */
+        .navbar {
+            background-color: #2b4c2d;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            color: #fff;
+        }
+
+
+
+
+        .navbar .menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .menu a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .navbar .menu a:hover {
+            color: #ffdd57;
+        }
+
+        .navbar .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .navbar .search-bar input[type="text"] {
+            border: none;
+            padding: 8px;
+            font-size: 1em;
+            outline: none;
+            width: 250px;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .navbar .search-bar button {
+            background-color: #ffa500;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            color: white;
+        }
+
+        .navbar .search-bar button:hover {
+            background-color: #e69500;
+        }
+
+        .navbar .header-options {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .header-options .option {
+            color: white;
+            margin: 0 10px;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .navbar .header-options .option:hover {
+            color: #ffdd57;
+        }
+
+        .navbar .language-selector {
+            background-color: #fff;
+            color: #333;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Profile Section */
+        .profile {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+
+        .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .profile-details {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 50px;
+            background-color: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            z-index: 10;
+            border-radius: 5px;
+        }
+
+        .profile:hover .profile-details {
+            display: block;
+        }
+
+        /* Product Section Styles */
+        .product-section {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .product {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+        }
+
+        .product img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .product-details {
+            margin-top: 10px;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            margin: 5px 0;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        /* Footer Image Section */
+        .footer-image {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer-image img {
+            width: 100%;
+            max-width: 1920px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Chatbot Styles */
+        .chatbot {
+            position: fixed;
+            bottom: 60px;
+            right: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chatbot-header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            text-align: center;
+        }
+
+        .chatbot-body {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        .chatbot-footer {
+            padding: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chatbot-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .chatbot-button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .chatbot-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+
+        <div class="menu">
+            <a href="{% url 'Base' %}" class="Button">Home</a>
+            <a href="{% url 'about' %}" class="Button">About us</a>
+             <a href="{% url 'equipments' %}" class="Button">Equipments</a>
+             <a href="{% url 'smart_equipments' %}" class="Button">Smart equipments</a>
+              <a href="{% url 'seeds' %}" class="Button">Seeds</a>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search  (Under devlopment)">
+            <button>Search</button>
+        </div>
+        <div class="header-options">
+            <div class="language-selector">Language</div>
+
+
+
+            </div>
+        </div>
+        <div id="login-btn" class="option" style="cursor: pointer;">Login</div>
+    </div>
+
+    <div class="container">
+        <!-- Product Section -->
+     <div class="product-section">
+    <h2>Available Products</h2>
+    <div class="products">
+        <!-- Updated Products (20 Total) -->
+        <div class="product">
+            <img src="https://goodineverygrain.ca/wp-content/uploads/2021/06/wheat-berries-bowl.png" alt="Wheat">
+            <div class="product-details">
+                <h3>Wheat</h3>
+                <p>Price: ₹200</p>
+                <p>High-quality wheat for baking and cooking.</p>
+               <a href="{% url 'order' %}" class="button">Buy Now</a>
+
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://organicboosting.bio/wp-content/uploads/2024/04/organic-rice.jpg" alt="Rice">
+            <div class="product-details">
+                <h3>Rice</h3>
+                <p>Price: ₹180</p>
+                <p>Premium long-grain rice, perfect for meals.</p>
+               <a href="{% url 'order' %}" class="button">Buy Now</a>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://www.keshrinandan.com/wp-content/uploads/2015/08/ke_maize_nutrition.jpg" alt="Maize">
+            <div class="product-details">
+                <h3>Maize</h3>
+                <p>Price: ₹140</p>
+                <p>Freshly harvested maize for animal feed.</p>
+            <a href="{% url 'order' %}" class="button">Buy Now</a>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://5.imimg.com/data5/FW/NO/PX/SELLER-2442698/roasted-bajra-barle--500x500.jpg" alt="Barley">
+            <div class="product-details">
+                <h3>Barley</h3>
+                <p>Price: ₹160</p>
+                <p>Nutrient-rich barley for soups and brewing.</p>
+               <a href="{% url 'order' %}" class="button">Buy Now</a>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://cdn.britannica.com/18/156618-050-39339EA2/cotton-harvesting.jpg" alt="Cotton">
+            <div class="product-details">
+                <h3>Cotton</h3>
+                <p>Price: ₹250</p>
+                <p>Pure, soft cotton for textile production.</p>
+                <a href="{% url 'order' %}" class="button">Buy Now</a>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://www.thespruceeats.com/thmb/NwTe_ngAJwwFiXfoPlFQ1Zl5LuI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/close-up-of-soy-beans-717368577-5abc422fba6177003796e9bd.jpg" alt="Soybeans">
+            <div class="product-details">
+                <h3>Soybeans</h3>
+                <p>Price: ₹220</p>
+                <p>Protein-packed soybeans for animal feed.</p>
+                <a href="{% url 'order' %}" class="button">Buy Now</a>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://i0.wp.com/botany.one/wp-content/uploads/2017/12/512px-Cut_sugarcane.jpg?ssl=1" alt="Sugarcane">
+            <div class="product-details">
+                <h3>Sugarcane</h3>
+                <p>Price: ₹300</p>
+                <p>Fresh sugarcane for sweeteners and biofuel.</p>
+                <a href="{% url 'order' %}" class="button">Buy Now</a>
+            </div>
+        </div>
+
+
+
+
+        <div class="product">
+            <img src="https://static.toiimg.com/photo/92522114.cms" alt="Potatoes">
+            <div class="product-details">
+                <h3>Potatoes</h3>
+                <p>Price: ₹80</p>
+                <p>Organic, high-quality potatoes for cooking.</p>
+              <a href="{% url 'order' %}" class="button">Buy Now</a>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://akulaorganics.in/wp-content/uploads/2022/08/36700-0w470h470_Organic_Red_Onion_From_Italy.jpeg" alt="Onions">
+            <div class="product-details">
+                <h3>Onions</h3>
+                <p>Price: ₹70</p>
+                <p>Crisp, flavorful onions for cooking.</p>
+                <a href="{% url 'order' %}" class="button">Buy Now</a>
+            </div>
+        </div>
+
+        <!-- Continue with the next 10 products -->
+
+        <div class="product">
+            <img src="https://www.knowyourproduce.com/wp-content/uploads/2022/08/how-to-grow-carrots-2.png" alt="Carrots">
+            <div class="product-details">
+                <h3>Carrots</h3>
+                <p>Price: ₹95</p>
+                <p>Fresh, crunchy carrots packed with vitamins.</p>
+                <a href="{% url 'order' %}" class="button">Buy Now</a>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://nutritionsource.hsph.harvard.edu/wp-content/uploads/2018/08/bananas-1354785_1920.jpg" alt="Bananas">
+            <div class="product-details">
+                <h3>Bananas</h3>
+                <p>Price: ₹120</p>
+                <p>Ripe, sweet bananas for snacking.</p>
+               <a href="{% url 'order' %}" class="button">Buy Now</a>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://media.self.com/photos/5b6b0b0cbb7f036f7f5cbcfa/4:3/w_2560%2Cc_limit/apples.jpg" alt="Apples">
+            <div class="product-details">
+                <h3>Apples</h3>
+                <p>Price: ₹150</p>
+                <p>Crisp and juicy apples in multiple varieties.</p>
+               <a href="{% url 'order' %}" class="button">Buy Now</a>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://cdn-prod.medicalnewstoday.com/content/images/articles/272/272782/oranges-in-a-box.jpg" alt="Oranges">
+            <div class="product-details">
+                <h3>Oranges</h3>
+                <p>Price: ₹130</p>
+                <p>Refreshing oranges bursting with flavor.</p>
+              <a href="{% url 'order' %}" class="button">Buy Now</a>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://farmfreshfundraising.com/wp-content/uploads/2017/10/271156-grapes.jpg" alt="Grapes">
+            <div class="product-details">
+                <h3>Grapes</h3>
+                <p>Price: ₹180</p>
+                <p>Seedless, sweet grapes perfect for snacking.</p>
+            <a href="{% url 'order' %}" class="button">Buy Now</a>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Mangos_-_single_and_halved.jpg" alt="Mangoes">
+            <div class="product-details">
+                <h3>Mangoes</h3>
+                <p>Price: ₹200</p>
+                <p>Delicious, tropical mangoes for a sweet treat.</p>
+               <a href="{% url 'order' %}" class="button">Buy Now</a>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://blog.jungseed.com/wp-content/uploads/2020/05/Main-scaled.jpg" alt="Peppers">
+            <div class="product-details">
+                <h3>Peppers</h3>
+                <p>Price: ₹85</p>
+                <p>Spicy and mild peppers for flavor and heat.</p>
+                <a href="{% url 'order' %}" class="button">Buy Now</a>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://static.toiimg.com/photo/68356209.cms" alt="Chili">
+            <div class="product-details">
+                <h3>Chili</h3>
+                <p>Price: ₹75</p>
+                <p>Red hot chili for adding spice to your dishes.</p>
+                <a href="{% url 'order' %}" class="button">Buy Now</a>
+            </div>
+        </div>
+
+        <div class="product">
+    <img src="https://d3awvtnmmsvyot.cloudfront.net/api/file/GGosbWO9SYyGxvDaciZf/convert?fit=max&w=570&cache=true" alt="Cabbage">
+    <div class="product-details">
+        <h3>Cabbage</h3>
+        <p>Price: ₹50</p>
+        <p>Fresh green cabbage, perfect for salads and cooking.</p>
+       <a href="{% url 'order' %}" class="button">Buy Now</a>
+    </div>
+</div>
+
+<div class="product">
+    <img src="https://images.healthshots.com/healthshots/en/uploads/2021/08/23133154/Peas.jpg" alt="Peas">
+    <div class="product-details">
+        <h3>Peas</h3>
+        <p>Price: ₹100</p>
+        <p>Fresh green peas, rich in protein and perfect for cooking.</p>
+      <a href="{% url 'order' %}" class="button">Buy Now</a>
+    </div>
+</div>
+
+<div class="product">
+    <img src="https://www.thespruceeats.com/thmb/2Pdkzy-BBOBG74eziXqSj3hwDeI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/SES-history-of-the-pineapple-1807645-343418eb3b4c41b1b956d3c702550a07.jpg" alt="Pineapple">
+    <div class="product-details">
+        <h3>Pineapple</h3>
+        <p>Price: ₹80</p>
+        <p>Sweet, tropical pineapple, great for snacking and juices.</p>
+      <a href="{% url 'order' %}" class="button">Buy Now</a>
+    </div>
+</div>
+
+
+    </div>
+</div>
+
+        <!-- Footer Image Section -->
+        <div class="footer-image">
+        <img src="https://www.bighaat.com/_next/image?url=%2Fimages%2FloginIllustration.png&w=1920&q=75"
+             alt="Footer Illustration"
+             style="width: 100%; max-width: 1920px; height: auto; object-fit: contain;" />
+    </div>
+    </div>
+
+
+</body>
+</html>

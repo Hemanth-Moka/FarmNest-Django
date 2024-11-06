@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriCulture E-Commerce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'app/styles.css' %}">
+ <!-- Link to your styles.css file -->
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="{% static 'images/logo.png' %}" alt="AgriCulture Logo">
+        </div>
+        <div class="menu">
+            <a href="#">Home</a>
+            <a href="{% url 'products' %}">Products</a>
+            <a href="{% url 'about' %}">About Us</a>
+            <a href="#growth-promoters-section">Growth Promoters</a>
+            <a href="#smart-farming-section">Smart Farming</a>
+            <a href="#seeds-section">Seeds</a>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search product (under Development)">
+            <button>Search</button>
+        </div>
+        <div class="header-options">
+            <a href="{% url 'login' %}" class="option">Login</a>
+            <a href="{% url 'Register' %}" class="option">Register</a>
+            <div class="language-selector">Language</div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-text">
+            <h1>Welcome to AgriCulture</h1>
+            <p>Your one-stop shop for agricultural products.</p>
+            <p>Explore our extensive catalog and find the right solutions for your farming needs.</p>
+            <a href="{% url 'products' %}#products-section" class="btn">Explore Products</a>
+        </div>
+    </div>
+
+    <!-- Call to Action Banner -->
+    <div class="cta-banner">
+        <h2>Seasonal Sale!</h2>
+        <p>Get up to 50% off on selected products.</p>
+        <a href="{% url 'products' %}">Shop Now</a>
+    </div>
+
+    <!-- Category Section -->
+      <!-- Category Section -->
+    <div class="category-section">
+        <h2 class="category-heading">Shop By Category</h2>
+        <div class="category animate">
+            <img src="https://st4.depositphotos.com/27201292/39791/i/450/depositphotos_397912150-stock-photo-simple-logo-illustration-green-seed.jpg" alt="Green Seed Logo">
+
+            <h3>Seeds</h3>
+        </div>
+        <div class="category animate">
+            <img src="https://img.freepik.com/premium-vector/3d-web-banner-with-colored-bars-growth-chart-sign-vector-illustration_756957-868.jpg" alt="Growth Promoters">
+            <h3>Growth Promoters</h3>
+        </div>
+        <div class="category animate">
+            <img src="https://img.freepik.com/premium-vector/smart-agriculture-logo-template-design_316488-1369.jpg" alt="Smart Farming">
+            <h3>Smart Farming</h3>
+        </div>
+        <div class="category animate">
+            <img src="https://img.freepik.com/premium-vector/organic-fetillizer-logo-design_1004676-351.jpg?semt=ais_hybrid" alt="Fertilizers">
+            <h3>Fertilizers</h3>
+        </div>
+        <div class="category animate">
+            <img src="https://img.freepik.com/premium-vector/farming-agriculture-logo-design-vector-icon-illustration-brand-identity_7109-964.jpg" alt="Farming Tools">
+            <h3>Farming Tools</h3>
+        </div>
+        <div class="category animate">
+            <img src="https://image.made-in-china.com/2f0j00dLAosGzRMkcJ/250ml-500ml-1200ml-Square-HDPE-Plastic-Chemical-Powder-HDPE-Bottle-for-Pesticides.jpg" alt="Pesticides">
+            <h3>Pesticides</h3>
+        </div>
+    </div>
+
+    <!-- Featured Products Section -->
+    <div class="featured-products">
+        <h2>Featured Products</h2>
+        <div class="product animate">
+            <img src="{% static 'images/product1.jpg' %}" alt="Product 1">
+            <h3>Organic Fertilizer</h3>
+            <p>$20.00</p>
+        </div>
+        <div class="product animate">
+            <img src="{% static 'images/product2.jpg' %}" alt="Product 2">
+            <h3>Pesticide</h3>
+            <p>$15.00</p>
+        </div>
+        <div class="product animate">
+            <img src="{% static 'images/product3.jpg' %}" alt="Product 3">
+            <h3>Quality Seeds</h3>
+            <p>$10.00</p>
+        </div>
+        <div class="product animate">
+            <img src="{% static 'images/product4.jpg' %}" alt="Product 4">
+            <h3>Growth Promoter</h3>
+            <p>$25.00</p>
+        </div>
+
+    </div>
+
+
+
+
+    <!-- Why Choose Us Section -->
+    <div class="why-choose-us">
+        <h2>Why Choose Us?</h2>
+        <p>At AgriCulture, we prioritize quality and sustainability. Our products are sourced from trusted suppliers and designed to help your crops thrive.</p>
+        <p>Join our community of satisfied customers who trust us for their agricultural needs.</p>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="testimonials-section">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial">"AgriCulture has transformed the way I farm! Highly recommended!" - Sarah L.</div>
+        <div class="testimonial">"Quality products and fast shipping. I’ll be a repeat customer!" - John D.</div>
+    </div>
+
+    <!-- Newsletter Signup -->
+    <div class="newsletter">
+        <h2>Subscribe to Our Newsletter</h2>
+        <p>Get the latest updates and exclusive offers.</p>
+        <input type="email" placeholder="Enter your email">
+        <button>Subscribe</button>
+    </div>
+
+    <!-- Brands Section -->
+    <div class="brands-section">
+        <h2 class="brands-heading">Our Trusted Brands</h2>
+        <div class="brand">
+            <img src="{% static 'images/brand1.png' %}" alt="Brand 1">
+        </div>
+        <div class="brand">
+            <img src="{% static 'images/brand2.png' %}" alt="Brand 2">
+        </div>
+        <div class="brand">
+            <img src="{% static 'images/brand3.png' %}" alt="Brand 3">
+        </div>
+    </div>
+
+    <!-- Blog Section -->
+    <div class="blog-section">
+        <h2>From Our Blog</h2>
+        <div class="blog-post">
+            <h3>5 Tips for Sustainable Farming</h3>
+            <p>Learn how to make your farming practices more sustainable and eco-friendly.</p>
+            <a href="#">Read More</a>
+        </div>
+        <div class="blog-post">
+            <h3>Choosing the Right Fertilizer</h3>
+            <p>Find out how to select the best fertilizer for your crops.</p>
+            <a href="#">Read More</a>
+        </div>
+    </div>
+
+    <!-- Contact Us Section -->
+<div class="contact-us">
+    <h2>Contact Us</h2>
+
+
+    <div class="social-media">
+        <a href="https://www.facebook.com" target="_blank">
+            <img src="facebook-icon.png" alt="Facebook">
+        </a>
+        <a href="https://www.twitter.com" target="_blank">
+            <img src="twitter-icon.png" alt="Twitter">
+        </a>
+        <a href="https://www.linkedin.com" target="_blank">
+            <img src="linkedin-icon.png" alt="LinkedIn">
+        </a>
+        <a href="https://www.instagram.com" target="_blank">
+            <img src="instagram-icon.png" alt="Instagram">
+        </a>
+    </div>
+</div>
+
+
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">FAQ</a>
+        </div>
+        <p>&copy; 2024 AgriCulture E-Commerce. All rights reserved.</p>
+    </div>
+</body>
+</html>

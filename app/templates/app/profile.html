@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .profile-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .profile-header h2 {
+            color: #333;
+        }
+        .profile-picture {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .profile-picture img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #4CAF50;
+        }
+        .profile-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .profile-details div {
+            padding: 10px;
+        }
+        .profile-details label {
+            font-weight: bold;
+            color: #555;
+        }
+        .profile-details p {
+            margin: 5px 0;
+            color: #333;
+        }
+        .profile-update {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .profile-update button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .profile-update button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Profile Container -->
+    <div class="profile-container">
+        <div class="profile-header">
+            <h2>Your Profile</h2>
+        </div>
+
+        <!-- Profile Picture -->
+        <div class="profile-picture">
+            <img src="https://cdn-icons-png.flaticon.com/512/194/194938.png" alt="Profile Picture">
+        </div>
+
+        <!-- Profile Details -->
+        <div class="profile-details">
+            <!-- Name -->
+            <div>
+                <label for="name">Name:</label>
+                <p id="name">Default User</p>
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label for="email">Email:</label>
+                <p id="email">@example.com</p>
+            </div>
+
+            <!-- Phone Number -->
+            <div>
+                <label for="phone">Phone Number:</label>
+                <p id="phone">+91 </p>
+            </div>
+
+            <!-- Address -->
+            <div>
+                <label for="address">Address:</label>
+                <p id="address">, India</p>
+            </div>
+
+            <!-- Farming Preferences -->
+            <div>
+                <label for="farming-category">Farming Category:</label>
+                <p id="farming-category">Vegetable Farming</p>
+            </div>
+
+            <!-- Preferred Products -->
+            <div>
+                <label for="preferred-products">Preferred Products:</label>
+                <p id="preferred-products">Seeds, Organic Fertilizers</p>
+            </div>
+        </div>
+
+        <!-- Update Profile Button -->
+        <div class="profile-update">
+            <button onclick="location.href='edit-profile.html'">Update Profile</button>
+        </div>
+    </div>
+
+</body>
+</html>

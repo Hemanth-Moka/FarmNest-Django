@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<body style="margin: 0; font-family: Arial, sans-serif; background: url('https://www.pngall.com/wp-content/uploads/8/Farm-PNG-Image.png') no-repeat center center fixed; background-size: cover;">
+
+    <!-- Navigation Bar -->
+    <nav style="background-color: #004f22; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <a href="#" style="color: white; font-size: 24px; text-decoration: none; font-weight: bold;"></a>
+        </div>
+        <div>
+            <a href="{% url 'login_first' %}" style="color: white; text-decoration: none; margin-right: 20px;">Brands</a>
+
+            <a href="{% url 'login_first' %}" style="color: white; text-decoration: none; margin-right: 20px;">Seeds</a>
+
+           <a href="{% url 'login_first' %}" style="color: white; text-decoration: none; margin-right: 20px;">Crop promoters</a>
+
+            <a href="{% url 'login_first' %}" style="color: white; text-decoration: none; margin-right: 20px;">Equipments</a>
+
+        </div>
+    </nav>
+
+    <!-- Search Bar Section -->
+    <div style="background-color: #e6f2e6; padding: 20px; text-align: center;">
+        <input type="text" placeholder="Search..." style="padding: 10px; width: 50%; border-radius: 5px; border: 1px solid #ddd;">
+        <button style="padding: 10px 20px; background-color: #ff7d00; color: white; border: none; border-radius: 5px; cursor: pointer;">Search</button>
+    </div>
+
+    <!-- Login Form Section -->
+    <div style="display: flex; justify-content: center; align-items: center; height: 70vh;">
+        <div style="background-color: rgba(255, 255, 255, 0.8); padding: 40px; border-radius: 10px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); width: 300px; text-align: center;">
+            <h2 style="margin-bottom: 20px; color: #4CAF50;">Login</h2>
+
+            <!-- Login Form -->
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <!-- Username Input -->
+                <input type="text" name="username" placeholder="Enter username" style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 5px;" required />
+
+                <!-- Password Input -->
+                <input type="password" name="password" placeholder="Enter password" style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 5px;" required />
+
+                <!-- Login Button -->
+                <button type="submit" style="width: 100%; padding: 12px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">Login</button>
+            </form>
+
+            <!-- If you don't have an account -->
+            <div style="margin-top: 20px;">
+                <span>Don’t have an account?</span>
+                <a href="{% url 'Register' %}" style="color: #ff7d00; text-decoration: none;">Register</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Image Section for Proper Alignment -->
+    <div style="margin-top: 30px; display: flex; justify-content: center;">
+        <img src="https://www.bighaat.com/_next/image?url=%2Fimages%2FloginIllustration.png&w=1920&q=75"
+             alt="Footer Illustration"
+             style="width: 100%; max-width: 1920px; height: auto; object-fit: contain;" />
+    </div>
+
+</body>
+</html>
