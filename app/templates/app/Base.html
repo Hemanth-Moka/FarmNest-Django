@@ -5,13 +5,83 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgriCulture E-Commerce</title>
+    <title>FarmNest</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'app/styles.css' %}">
- <!-- Link to your styles.css file -->
+    <script>
+        // Translation dictionary
+        const translations = {
+            en: {
+                navbar: ["Home", "Products", "About Us", "Growth Promoters", "Smart Farming", "Seeds", "Login", "Register", "Language"],
+                hero: ["Welcome to AgriCulture", "Your one-stop shop for agricultural products.", "Explore our extensive catalog and find the right solutions for your farming needs.", "Explore Products"],
+                cta: ["Seasonal Sale!", "Get up to 50% off on selected products.", "Shop Now"],
+                category: ["Shop By Category", "Seeds", "Growth Promoters", "Smart Farming", "Fertilizers", "Farming Tools", "Pesticides"],
+                featured: ["Featured Products", "Organic Fertilizer", "Pesticide", "Quality Seeds", "Growth Promoter"],
+                whyChooseUs: ["Why Choose Us?", "At AgriCulture, we prioritize quality and sustainability. Our products are sourced from trusted suppliers and designed to help your crops thrive.", "Join our community of satisfied customers who trust us for their agricultural needs."],
+                testimonials: ["What Our Customers Say", "\"AgriCulture has transformed the way I farm! Highly recommended!\" - Sarah L.", "\"Quality products and fast shipping. I’ll be a repeat customer!\" - John D."],
+                newsletter: ["Subscribe to Our Newsletter", "Get the latest updates and exclusive offers.", "Enter your email", "Subscribe"],
+                brands: ["Our Trusted Brands", "Coming Soon"],
+                blog: ["From Our Blog", "5 Tips for Sustainable Farming", "Learn how to make your farming practices more sustainable and eco-friendly.", "Read More", "Choosing the Right Fertilizer", "Find out how to select the best fertilizer for your crops."],
+                contact: ["Contact Us"],
+                social: ["Privacy Policy", "Terms of Service", "FAQ"]
+            },
+            te: {
+                navbar: ["హోమ్", "ఉత్పత్తులు", "మా గురించి", "వృద్ధి ప్రోత్సాహకులు", "స్మార్ట్ వ్యవసాయం", "విత్తనాలు", "లాగిన్", "నమోదు", "భాష"],
+                hero: ["అగ్రికల్చర్‌కి స్వాగతం", "వ్యవసాయ ఉత్పత్తులకు మీ స్టాప్ షాప్.", "మా విస్తృత క్యాటలాగ్‌ను అన్వేషించి, మీ వ్యవసాయ అవసరాలకు సరైన పరిష్కారాలను కనుగొనండి.", "ఉత్పత్తులను అన్వేషించండి"],
+                cta: ["మౌసమి అమ్మకాలు!", "ఎంపిక చేయబడిన ఉత్పత్తులపై 50% వరకు తగ్గింపు పొందండి.", "ఇప్పుడు కొనండి"],
+                category: ["కేటగిరీ ద్వారా కొనండి", "విత్తనాలు", "వృద్ధి ప్రోత్సాహకులు", "స్మార్ట్ వ్యవసాయం", "ఎరువులు", "వ్యవసాయ పరికరాలు", "పెస్టిసైడ్లు"],
+                featured: ["ప్రధాన ఉత్పత్తులు", "సేంద్రీయ ఎరువు", "పెస్టిసైడ్", "నాణ్యమైన విత్తనాలు", "వృద్ధి ప్రోత్సాహకం"],
+                whyChooseUs: ["మమ్మల్ని ఎందుకు ఎంచుకోవాలి?", "అగ్రికల్చర్‌లో, మేము నాణ్యత మరియు స్థిరత్వానికి ప్రాధాన్యత ఇస్తాము. మా ఉత్పత్తులు విశ్వసనీయ సరఫరాదారుల నుండి పొందినవి మరియు మీ పంటలు అభివృద్ధి చెందడానికి రూపొందించబడ్డాయి.", "మా పంటల అవసరాలను నమ్మే మా సంతృప్తి చెందిన కస్టమర్ల కమ్యూనిటీలో చేరండి."],
+                testimonials: ["మా కస్టమర్లు ఏమి చెబుతున్నారు", "\"అగ్రికల్చర్ నా వ్యవసాయాన్ని మార్చింది! చాలా సిఫార్సు చేయబడింది!\" - సారాహ్ ఎల్.", "\"నాణ్యమైన ఉత్పత్తులు మరియు త్వరిత డెలివరీ. నేను పునరావృత కస్టమర్‌గా ఉంటాను!\" - జాన్ డి."],
+                newsletter: ["మా న్యూస్‌లెటర్‌కు సబ్స్క్రైబ్ చేయండి", "తాజా నవీకరణలు మరియు ప్రత్యేక ఆఫర్లను పొందండి.", "మీ ఇమెయిల్‌ను నమోదు చేయండి", "చేరండి"],
+                brands: ["మా విశ్వసనీయ బ్రాండ్లు", "త్వరలో రాబోతున్నాయి"],
+                blog: ["మా బ్లాగ్ నుండి", "స్థిరమైన వ్యవసాయానికి 5 చిట్కాలు", "మీ వ్యవసాయ అభ్యాసాలను మరింత స్థిరంగా మరియు పర్యావరణ అనుకూలంగా ఎలా మార్చాలో తెలుసుకోండి.", "మరింత చదవండి", "సరైన ఎరువును ఎంచుకోవడం", "మీ పంటలకు ఉత్తమ ఎరువును ఎంచుకోవడం గురించి తెలుసుకోండి."],
+                contact: ["మమ్మల్ని సంప్రదించండి"],
+                social: ["గోప్యతా విధానం", "సేవా నిబంధనలు", "తరచుగా అడిగే ప్రశ్నలు"]
+            },
+            hi: {
+                navbar: ["मुखपृष्ठ", "उत्पाद", "हमारे बारे में", "विकास प्रमोटर", "स्मार्ट खेती", "बीज", "लॉग इन करें", "रजिस्टर करें", "भाषा"],
+                hero: ["एग्रीकल्चर में आपका स्वागत है", "कृषि उत्पादों के लिए आपका वन-स्टॉप शॉप।", "हमारे विस्तृत कैटलॉग का अन्वेषण करें और अपनी कृषि आवश्यकताओं के लिए सही समाधान खोजें।", "उत्पाद खोजें"],
+                cta: ["मौसमी बिक्री!", "चयनित उत्पादों पर 50% तक की छूट प्राप्त करें।", "अभी खरीदें"],
+                category: ["श्रेणी द्वारा खरीदें", "बीज", "विकास प्रमोटर", "स्मार्ट खेती", "उर्वरक", "खेती उपकरण", "कीटनाशक"],
+                featured: ["विशेष उत्पाद", "जैविक उर्वरक", "कीटनाशक", "गुणवत्तापूर्ण बीज", "विकास प्रमोटर"],
+                whyChooseUs: ["हमें क्यों चुनें?", "एग्रीकल्चर में, हम गुणवत्ता और स्थिरता को प्राथमिकता देते हैं। हमारे उत्पाद भरोसेमंद आपूर्तिकर्ताओं से प्राप्त किए जाते हैं और आपके फसलों को विकसित करने में मदद के लिए डिज़ाइन किए गए हैं।", "हमारे संतुष्ट ग्राहकों के समुदाय में शामिल हों जो अपनी कृषि आवश्यकताओं के लिए हम पर भरोसा करते हैं।"],
+                testimonials: ["हमारे ग्राहक क्या कहते हैं", "\"एग्रीकल्चर ने मेरी खेती करने का तरीका बदल दिया है! अत्यधिक अनुशंसा की जाती है!\" - सारा एल.", "\"गुणवत्तापूर्ण उत्पाद और तेज़ शिपिंग। मैं बार-बार ग्राहक बनूंगा!\" - जॉन डी."],
+                newsletter: ["हमारे न्यूज़लेटर की सदस्यता लें", "नवीनतम अपडेट और विशेष ऑफ़र प्राप्त करें।", "अपना ईमेल दर्ज करें", "सदस्यता लें"],
+                brands: ["हमारे विश्वसनीय ब्रांड्स", "जल्द आ रहा है"],
+                blog: ["हमारे ब्लॉग से", "स्थायी खेती के लिए 5 टिप्स", "जानें कि अपनी कृषि प्रथाओं को अधिक स्थिर और पर्यावरण-अनुकूल कैसे बनाएं।", "और पढ़ें", "सही उर्वरक चुनना", "जानें कि अपनी फसलों के लिए सबसे अच्छा उर्वरक कैसे चुनें।"],
+                contact: ["हमसे संपर्क करें"],
+                social: ["गोपनीयता नीति", "सेवा की शर्तें", "सामान्य प्रश्न"]
+            }
+        };
+
+        // Function to switch language
+        function switchLanguage(lang) {
+            const keys = Object.keys(translations[lang]);
+            keys.forEach((key) => {
+                const elements = document.querySelectorAll(`[data-translate="${key}"]`);
+                elements.forEach((el, index) => {
+                    el.textContent = translations[lang][key][index];
+                });
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const languageSelector = document.querySelector('.language-selector');
+            let currentLang = 'en';
+
+            languageSelector.addEventListener('click', () => {
+                currentLang = currentLang === 'en' ? (currentLang === 'te' ? 'hi' : 'te') : 'en';
+                switchLanguage(currentLang);
+                languageSelector.textContent = currentLang === 'te' ? 'తెలుగు' : (currentLang === 'hi' ? 'हिन्दी' : 'English');
+            });
+        });
+    </script>
 </head>
 
+
 <body>
+
     <!-- Navbar -->
     <div class="navbar">
 
@@ -19,12 +89,12 @@
             <a href="#">Home</a>
             <a href="{% url 'products' %}">Products</a>
             <a href="{% url 'about' %}">About Us</a>
-            <a href="#growth-promoters-section">Growth Promoters</a>
-            <a href="#smart-farming-section">Smart Farming</a>
-            <a href="#seeds-section">Seeds</a>
+
+            <a href="#smartequipments">Smart Farming</a>
+            <a href="{%url 'seeds'%}">Seeds</a></a>
         </div>
         <div class="search-bar">
-            <input type="text" placeholder="Search product (under Development)">
+            <input type="text" placeholder="Go to products..">
             <button>Search</button>
         </div>
         <div class="header-options">
@@ -37,7 +107,7 @@
     <!-- Hero Section -->
     <div class="hero-section">
         <div class="hero-text">
-            <h1>Welcome to AgriCulture</h1>
+            <h1>Welcome to FarmNest</h1>
             <p>Your one-stop shop for agricultural products.</p>
             <p>Explore our extensive catalog and find the right solutions for your farming needs.</p>
             <a href="{% url 'products' %}#products-section" class="btn">Explore Products</a>
@@ -86,22 +156,22 @@
     <div class="featured-products">
         <h2>Featured Products</h2>
         <div class="product animate">
-            <img src="{% static 'images/product1.jpg' %}" alt="Product 1">
+            <img src="https://mybageecha.com/cdn/shop/collections/Fertilizer.png?v=1464082716" alt="Product 1">
             <h3>Organic Fertilizer</h3>
             <p>$20.00</p>
         </div>
         <div class="product animate">
-            <img src="{% static 'images/product2.jpg' %}" alt="Product 2">
+            <img src="https://herbspeak.com/wp-content/uploads/2021/07/5.6-Bil-Lbs-of-Pesticide-Pollution.jpg" alt="Product 2">
             <h3>Pesticide</h3>
             <p>$15.00</p>
         </div>
         <div class="product animate">
-            <img src="{% static 'images/product3.jpg' %}" alt="Product 3">
+            <img src="https://i.pinimg.com/736x/84/eb/2b/84eb2b29ecae003e53d717946ff49dbd.jpg" alt="Product 3">
             <h3>Quality Seeds</h3>
             <p>$10.00</p>
         </div>
         <div class="product animate">
-            <img src="{% static 'images/product4.jpg' %}" alt="Product 4">
+            <img src="https://img.freepik.com/premium-vector/3d-web-banner-with-colored-bars-growth-chart-sign-vector-illustration_756957-868.jpg" alt="Growth Promoters">
             <h3>Growth Promoter</h3>
             <p>$25.00</p>
         </div>
@@ -133,19 +203,29 @@
         <button>Subscribe</button>
     </div>
 
-    <!-- Brands Section -->
-    <div class="brands-section">
-        <h2 class="brands-heading">Our Trusted Brands</h2>
-        <div class="brand">
-            <img src="{% static 'images/brand1.png' %}" alt="Brand 1">
-        </div>
-        <div class="brand">
-            <img src="{% static 'images/brand2.png' %}" alt="Brand 2">
-        </div>
-        <div class="brand">
-            <img src="{% static 'images/brand3.png' %}" alt="Brand 3">
-        </div>
+   <!-- Brands Section -->
+<div class="brands-section">
+    <h2 class="brands-heading">Our Trusted Brands</h2>
+    <div class="brand">
+       <img src="https://png.pngtree.com/png-vector/20191218/ourmid/pngtree-coming-soon-logo-vector-template-design-illustration-png-image_2091063.jpg" alt="Coming Soon">
     </div>
+     <div class="brand">
+       <img src="https://png.pngtree.com/png-vector/20191218/ourmid/pngtree-coming-soon-logo-vector-template-design-illustration-png-image_2091063.jpg" alt="Coming Soon">
+    </div>
+     <div class="brand">
+       <img src="https://png.pngtree.com/png-vector/20191218/ourmid/pngtree-coming-soon-logo-vector-template-design-illustration-png-image_2091063.jpg" alt="Coming Soon">
+    </div>
+     <div class="brand">
+       <img src="https://png.pngtree.com/png-vector/20191218/ourmid/pngtree-coming-soon-logo-vector-template-design-illustration-png-image_2091063.jpg" alt="Coming Soon">
+    </div>
+    <div class="brand">
+        <img src="https://png.pngtree.com/png-vector/20191218/ourmid/pngtree-coming-soon-logo-vector-template-design-illustration-png-image_2091063.jpg" alt="Coming Soon">
+    </div>
+    <div class="brand">
+        <img src="https://png.pngtree.com/png-vector/20191218/ourmid/pngtree-coming-soon-logo-vector-template-design-illustration-png-image_2091063.jpg" alt="Coming Soon">
+    </div>
+</div>
+
 
     <!-- Blog Section -->
     <div class="blog-section">
@@ -169,16 +249,16 @@
 
     <div class="social-media">
         <a href="https://www.facebook.com" target="_blank">
-            <img src="facebook-icon.png" alt="Facebook">
+            <img src="https://t3.ftcdn.net/jpg/04/04/98/88/360_F_404988825_ll3zGQ8u7Q0l4amW0GpOAVjH6PzcltlM.jpg" alt="Facebook">
         </a>
         <a href="https://www.twitter.com" target="_blank">
-            <img src="twitter-icon.png" alt="Twitter">
+            <img src="https://thumbs.dreamstime.com/b/twitter-logo-bird-isolated-over-white-background-social-media-networking-communications-symbol-breaking-news-130861855.jpg" alt="Twitter">
         </a>
         <a href="https://www.linkedin.com" target="_blank">
-            <img src="linkedin-icon.png" alt="LinkedIn">
+            <img src="https://cdn.pixabay.com/photo/2017/08/22/11/56/linked-in-2668700_640.png" alt="LinkedIn">
         </a>
         <a href="https://www.instagram.com" target="_blank">
-            <img src="instagram-icon.png" alt="Instagram">
+            <img src="https://as2.ftcdn.net/v2/jpg/02/98/31/59/1000_F_298315933_FdK3b8wCs7EhYWlJqieSvmSgTOr9MSfR.jpg" alt="Instagram">
         </a>
     </div>
 </div>
@@ -188,11 +268,12 @@
     <!-- Footer -->
     <div class="footer">
         <div class="footer-links">
-            <a href="#">Privacy Policy</a>
+            <a href="pri">Privacy Policy</a>
             <a href="#">Terms of Service</a>
             <a href="#">FAQ</a>
         </div>
-        <p>&copy; 2024 AgriCulture E-Commerce. All rights reserved.</p>
+        <p>&copy; 2024 FarmNest. All rights reserved.</p>
     </div>
 </body>
+
 </html>
